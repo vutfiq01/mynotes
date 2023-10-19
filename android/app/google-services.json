@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "429031049303",
+    "project_id": "edutech-mynotes",
+    "storage_bucket": "edutech-mynotes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:429031049303:android:ae692936cbd23f42a9bb12",
+        "android_client_info": {
+          "package_name": "com.b2inedubd.mynotes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNZiRwktQMo4deWuAL1z4oTA3LEJA2bSI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
