@@ -27,7 +27,7 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
               await user?.sendEmailVerification();
             },
             child: const Text(
-              'Send email verification.',
+              'Send email verification',
             ),
           ),
         ],
