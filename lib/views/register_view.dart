@@ -1,6 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mynotes/constants/routes.dart';
+import 'package:mynotes/services/auth/auth_exceptions.dart';
+import 'package:mynotes/services/auth/auth_service.dart';
 import 'package:mynotes/utilities/show_error_dialogue.dart';
 
 class RegisterView extends StatefulWidget {
@@ -61,45 +62,41 @@ class _RegisterViewState extends State<RegisterView> {
               final password = _password.text;
 
               try {
-                await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                await AuthService.firebase().createUser(
                   email: email,
                   password: password,
                 );
-                final user = FirebaseAuth.instance.currentUser;
-                await user?.sendEmailVerification();
+                await AuthService.firebase().sendEmailVerification();
 
                 if (mounted) {
                   Navigator.of(context).pushNamed(verifyEmailRoute);
                 }
-              } on FirebaseAuthException catch (e) {
-                if (e.code == 'weak-password' && mounted) {
+              } on WeakPasswordAuthException {
+                if (mounted) {
                   await showErrorDialogue(
                     context,
                     'Weak password.',
                   );
-                } else if (e.code == 'email-already-in-use' && mounted) {
+                }
+              } on EmailAlreadyInUseAuthException {
+                if (mounted) {
                   await showErrorDialogue(
                     context,
                     'Email already in use.',
                   );
-                } else if (e.code == 'invalid-email' && mounted) {
+                }
+              } on InvalidEmailAuthException {
+                if (mounted) {
                   await showErrorDialogue(
                     context,
                     'This is an invalid email address.',
                   );
-                } else {
-                  if (mounted) {
-                    await showErrorDialogue(
-                      context,
-                      'Error: ${e.code}.',
-                    );
-                  }
                 }
-              } catch (e) {
+              } on GenericAuthException {
                 if (mounted) {
                   await showErrorDialogue(
                     context,
-                    e.toString(),
+                    'Failed to register.',
                   );
                 }
               }
