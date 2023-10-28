@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mynotes/constants/routes.dart';
 import 'package:mynotes/services/auth/auth_exceptions.dart';
 import 'package:mynotes/services/auth/auth_service.dart';
-import 'package:mynotes/utilities/show_error_dialogue.dart';
+import 'package:mynotes/utilities/dialogs/error_dialog.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -73,28 +73,28 @@ class _RegisterViewState extends State<RegisterView> {
                 }
               } on WeakPasswordAuthException {
                 if (mounted) {
-                  await showErrorDialogue(
+                  await showErrorDialog(
                     context,
                     'Weak password.',
                   );
                 }
               } on EmailAlreadyInUseAuthException {
                 if (mounted) {
-                  await showErrorDialogue(
+                  await showErrorDialog(
                     context,
                     'Email already in use.',
                   );
                 }
               } on InvalidEmailAuthException {
                 if (mounted) {
-                  await showErrorDialogue(
+                  await showErrorDialog(
                     context,
                     'This is an invalid email address.',
                   );
                 }
               } on GenericAuthException {
                 if (mounted) {
-                  await showErrorDialogue(
+                  await showErrorDialog(
                     context,
                     'Failed to register.',
                   );

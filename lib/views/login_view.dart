@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mynotes/constants/routes.dart';
 import 'package:mynotes/services/auth/auth_exceptions.dart';
 import 'package:mynotes/services/auth/auth_service.dart';
-import 'package:mynotes/utilities/show_error_dialogue.dart';
+import 'package:mynotes/utilities/dialogs/error_dialog.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -85,14 +85,14 @@ class _LoginViewState extends State<LoginView> {
                 }
               } on InvalidLoginCredentialsAuthException {
                 if (mounted) {
-                  await showErrorDialogue(
+                  await showErrorDialog(
                     context,
                     'Either email or password or both incorrect.',
                   );
                 }
               } on GenericAuthException {
                 if (mounted) {
-                  await showErrorDialogue(
+                  await showErrorDialog(
                     context,
                     'Authentication error.',
                   );
