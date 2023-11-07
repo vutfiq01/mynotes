@@ -1,6 +1,8 @@
 //login exception
 class InvalidLoginCredentialsAuthException implements Exception {}
 
+class UserNotFoundAuthException implements Exception {}
+
 //register exceptions
 class WeakPasswordAuthException implements Exception {}
 
